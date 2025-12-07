@@ -18,12 +18,12 @@ const config: Config = {
   url: 'https://Wajihakamran-14.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/Physical-AI-and-Humanoid-Robotics/',
+  baseUrl: '/Hackathon-l-Physical-AI-and-Humanoid-Robotics-Text-Book/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'Wajihakamran-14', // Usually your GitHub org/user name.
-  projectName: 'Physical-AI-and-Humanoid-Robotics', // Usually your repo name.
+  projectName: 'Hackathon-l-Physical-AI-and-Humanoid-Robotics-Text-Book', // Usually your repo name.
 
   onBrokenLinks: 'throw',
 
@@ -44,7 +44,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/Wajihakamran-14/Physical-AI-and-Humanoid-Robotics/tree/main/book/',
+            'https://github.com/Wajihakamran-14/Hackathon-l-Physical-AI-and-Humanoid-Robotics-Text-Book/tree/main/book/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -73,7 +73,7 @@ const config: Config = {
           label: 'Book', // Changed from Tutorial
         },
         {
-          href: 'https://github.com/Wajihakamran-14/Physical-AI-and-Humanoid-Robotics/', // Updated GitHub link
+          href: 'https://github.com/Wajihakamran-14/Hackathon-l-Physical-AI-and-Humanoid-Robotics-Text-Book/', // Updated GitHub link
           label: 'GitHub',
           position: 'right',
         },
@@ -96,7 +96,7 @@ const config: Config = {
           items: [
             {
               label: 'GitHub Discussions',
-              href: 'https://github.com/Wajihakamran-14/Physical-AI-and-Humanoid-Robotics/discussions',
+              href: 'https://github.com/Wajihakamran-14/Hackathon-l-Physical-AI-and-Humanoid-Robotics-Text-Book/discussions',
             },
           ],
         },
@@ -105,7 +105,7 @@ const config: Config = {
           items: [
             {
               label: 'GitHub Repository',
-              href: 'https://github.com/Wajihakamran-14/Physical-AI-and-Humanoid-Robotics/',
+              href: 'https://github.com/Wajihakamran-14/Hackathon-l-Physical-AI-and-Humanoid-Robotics-Text-Book/',
             },
           ],
         },
