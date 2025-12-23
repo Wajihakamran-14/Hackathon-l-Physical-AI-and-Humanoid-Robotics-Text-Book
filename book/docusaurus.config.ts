@@ -12,7 +12,7 @@ const config: Config = {
   },
 
   // ✅ Vercel domain (replace with your exact Vercel link)
-  url: 'https://hackathon-1-physical-ai-and-humanoi.vercel.app',
+  url: 'https://hackathon-l-physical-ai-and-humanoi.vercel.app',
 
   // ❗ REQUIRED for Vercel – Always "/"
   baseUrl: '/',
