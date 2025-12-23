@@ -11,32 +11,34 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: 'Quick Deployment & Setup',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Our system is designed for a hassle-free start. Easily install the necessary software libraries,
+        connect your hardware components, and run your first AI routine in minutes. Focus on learning, not configuration.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Cutting-Edge Physical AI',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+       Dive deep into the core of intelligent physical systems. Our documentation covers advanced topics like
+       real-time sensor fusion, reinforcement learning algorithms, and robust motor control, allowing you to 
+       concentrate on innovative AI behaviors. 
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Modular & Extensible Design',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Built on a modular framework, our robot architecture allows you to easily integrate custom hardware,
+        develop new AI modules, and contribute to the core platform. Reuse existing code and extend functionality
+        to meet your unique needs.
       </>
     ),
   },
