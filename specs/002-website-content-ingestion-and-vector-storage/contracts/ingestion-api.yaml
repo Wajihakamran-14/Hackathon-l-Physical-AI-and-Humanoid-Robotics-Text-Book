@@ -1,0 +1,104 @@
+# Contract: CLI Content Ingestion Tool
+
+## Main CLI Interface
+
+### Command Line Arguments
+The main.py script accepts the following command-line arguments:
+
+```bash
+python main.py --source-url https://example-docusaurus-site.com --chunk-size 512 --overlap-size 102
+```
+
+#### Arguments
+- `--source-url`: URL of the Docusaurus site to ingest (required)
+- `--chunk-size`: Size of text chunks in tokens (default: 512)
+- `--overlap-size`: Overlap size between chunks in tokens (default: 102)
+- `--config`: Path to configuration file (optional)
+
+## Internal Module Contracts
+
+### Web Crawler Module
+- **Function**: `crawl_docusaurus_site(source_url: str) -> List[PageContent]`
+- **Purpose**: Crawl the Docusaurus site and extract page content
+- **Input**: Source URL to crawl
+- **Output**: List of page content objects with URL, title, and text content
+
+### Text Processing Module
+- **Function**: `extract_clean_text(html_content: str) -> str`
+- **Purpose**: Extract clean text from HTML content
+- **Input**: Raw HTML content
+- **Output**: Clean text with HTML tags removed
+
+### Chunking Module
+- **Function**: `chunk_text(text: str, chunk_size: int, overlap_size: int) -> List[DocumentChunk]`
+- **Purpose**: Split text into overlapping chunks optimized for RAG
+- **Input**: Text content, chunk size, overlap size
+- **Output**: List of document chunks with metadata
+
+### Embedding Module
+- **Function**: `generate_embeddings(texts: List[str]) -> List[EmbeddingVector]`
+- **Purpose**: Generate Cohere embeddings for text chunks
+- **Input**: List of text chunks
+- **Output**: List of embedding vectors
+
+### Storage Module
+- **Function**: `store_embeddings(embeddings: List[EmbeddingVector], metadata: List[Metadata]) -> bool`
+- **Purpose**: Store embeddings with metadata in Qdrant
+- **Input**: Embeddings and associated metadata
+- **Output**: Success status
+
+## External API Contracts
+
+### Cohere Embeddings API
+- **Endpoint**: `POST https://api.cohere.ai/v1/embed`
+- **Request**:
+  ```json
+  {
+    "texts": ["array", "of", "text", "chunks"],
+    "model": "embed-multilingual-v3.0",
+    "input_type": "search_document"
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "embeddings": [[0.1, 0.2, 0.3, ...], [0.4, 0.5, 0.6, ...]],
+    "meta": {
+      "billed_units": {
+        "input_tokens": 100
+      }
+    }
+  }
+  ```
+
+### Qdrant Vector Database API
+- **Endpoint**: `PUT https://your-cluster.qdrant.tech/collections/documents/points`
+- **Request**:
+  ```json
+  {
+    "points": [
+      {
+        "id": "unique-identifier",
+        "vector": [0.1, 0.2, 0.3, ...],
+        "payload": {
+          "source_url": "https://example.com/page",
+          "section": "Getting Started",
+          "chunk_id": "chunk-123",
+          "content_length": 512,
+          "processed_at": "2025-12-25T10:00:00Z"
+        }
+      }
+    ]
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "result": {
+      "status": "completed",
+      "inserted_count": 1
+    },
+    "status": "ok",
+    "time": 0.0123
+  }
+  ```

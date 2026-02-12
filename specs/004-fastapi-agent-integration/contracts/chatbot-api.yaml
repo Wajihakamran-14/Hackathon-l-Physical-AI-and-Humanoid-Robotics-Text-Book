@@ -1,0 +1,148 @@
+openapi: 3.0.3
+info:
+  title: RAG Chatbot API
+  description: API for the Retrieval-Augmented Generation Chatbot integrated with Docusaurus
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+    description: Local development server
+paths:
+  /chat:
+    post:
+      summary: Process a chat query through the RAG agent
+      description: Sends a user query to the RAG agent and returns a response with retrieval context
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatRequest'
+      responses:
+        '200':
+          description: Successful response from the RAG agent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatResponse'
+        '400':
+          description: Bad request - invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Chat
+  /health:
+    get:
+      summary: Health check endpoint
+      description: Returns the health status of the API
+      responses:
+        '200':
+          description: API is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+      tags:
+        - Health
+components:
+  schemas:
+    ChatRequest:
+      type: object
+      properties:
+        query:
+          type: string
+          description: The user's query or question
+          example: "What is ROS 2?"
+        conversation_id:
+          type: string
+          description: Optional conversation ID to maintain context
+          example: "123e4567-e89b-12d3-a456-426614174000"
+      required:
+        - query
+    ChatResponse:
+      type: object
+      properties:
+        response:
+          type: string
+          description: The agent's response to the query
+          example: "ROS 2 (Robot Operating System 2) is the next-generation..."
+        sources:
+          type: array
+          items:
+            type: object
+            properties:
+              chunk_id:
+                type: string
+              content:
+                type: string
+              similarity_score:
+                type: number
+                format: float
+              source_url:
+                type: string
+          description: Sources used to generate the response
+        query:
+          type: string
+          description: Echo of the original query
+          example: "What is ROS 2?"
+        timestamp:
+          type: string
+          format: date-time
+          description: When the response was generated
+        conversation_id:
+          type: string
+          description: ID to maintain conversation context
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        retrieval_results:
+          type: array
+          items:
+            type: object
+            properties:
+              chunk_id:
+                type: string
+              content:
+                type: string
+              similarity_score:
+                type: number
+                format: float
+          description: Detailed retrieval results used to generate the response
+      required:
+        - response
+        - sources
+        - query
+        - timestamp
+        - conversation_id
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [healthy]
+          example: "healthy"
+        service:
+          type: string
+          example: "RAG Chatbot API"
+      required:
+        - status
+        - service
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+          description: Error message
+          example: "Invalid query format"
+      required:
+        - detail
+tags:
+  - name: Chat
+    description: Chatbot interaction endpoints
+  - name: Health
+    description: Health check endpoints
