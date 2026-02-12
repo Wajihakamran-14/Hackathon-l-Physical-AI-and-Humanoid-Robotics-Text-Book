@@ -1,0 +1,107 @@
+# API Contract: Retrieval Validation Service
+
+## Purpose
+This contract defines the interface for the retrieval validation system that tests Qdrant collection retrieval accuracy, metadata integrity, and consistency.
+
+## Endpoints
+
+### POST /validate-retrieval
+Execute validation tests against Qdrant collection
+
+#### Request
+```json
+{
+  "queries": [
+    {
+      "id": "string",
+      "content": "string",
+      "expected_chunks": ["string"]
+    }
+  ],
+  "validation_config": {
+    "similarity_threshold": 0.7,
+    "num_test_runs": 1,
+    "validate_metadata": true,
+    "collection_name": "string"
+  }
+}
+```
+
+#### Response
+```json
+{
+  "validation_id": "string",
+  "status": "running|completed|failed",
+  "summary": {
+    "total_queries": 0,
+    "queries_passed": 0,
+    "relevance_accuracy": 0.0,
+    "metadata_accuracy": 0.0,
+    "consistency_score": 0.0
+  },
+  "results": [
+    {
+      "query_id": "string",
+      "query_content": "string",
+      "retrieved_chunks": [
+        {
+          "chunk_id": "string",
+          "score": 0.0,
+          "rank": 0,
+          "metadata": {
+            "url": "string",
+            "section": "string",
+            "chunk_id": "string"
+          }
+        }
+      ],
+      "metadata_valid": true,
+      "relevance_threshold_met": true,
+      "validation_passed": true
+    }
+  ],
+  "timestamp": "datetime",
+  "execution_time_ms": 0
+}
+```
+
+### GET /validation/{validation_id}
+Get status and results of a specific validation run
+
+#### Response
+```json
+{
+  "validation_id": "string",
+  "status": "running|completed|failed",
+  "results": {
+    "summary": {
+      "total_queries": 0,
+      "queries_passed": 0,
+      "relevance_accuracy": 0.0,
+      "metadata_accuracy": 0.0,
+      "consistency_score": 0.0
+    },
+    "detailed_results": [
+      // Same structure as results in POST response
+    ]
+  }
+}
+```
+
+## Error Responses
+All endpoints return standard error format:
+```json
+{
+  "error": {
+    "code": "string",
+    "message": "string",
+    "details": "object"
+  }
+}
+```
+
+## Error Codes
+- `QDRANT_CONNECTION_FAILED`: Unable to connect to Qdrant
+- `INVALID_QUERY_FORMAT`: Query format is invalid
+- `VALIDATION_FAILED`: Validation process failed
+- `COLLECTION_NOT_FOUND`: Specified Qdrant collection does not exist
