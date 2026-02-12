@@ -16,60 +16,60 @@ LINKS:
   ADR: null
   PR: null
 FILES_YAML: |
-  - specs/003-openai-agent-rag/spec.md
+- specs/003-openai-agent-rag/spec.md
 TESTS_YAML: |
-  - specs/003-openai-agent-rag/spec.md
+- specs/003-openai-agent-rag/spec.md
 PROMPT_TEXT: |
-  Retrieval-Augmented Agent using OpenAI Agent SDK
+Retrieval-Augmented Agent using OpenAI Agent SDsk
 
-  Target audience: Developers building RAG-based AI assistants for documentation
-  Focus: Agent-level orchestration of retrieval and response generation
+Target audience: Developers building RAG-based AI assistants for documentation
+Focus: Agent-level orchestration of retrieval and response generation
 
-  Success criteria:
+Success criteria:
   - Creates an AI Agent using OpenAI Agent SDK
   - Integrates Qdrant-based retrieval as a tool
   - Accepts user queries and retrieves relevant chunks
   - Generates answers grounded strictly in retrieved context
   - Supports "answer from selected text only" mode
 
-  Constraints:
+Constraints:
   - Language: Python
   - Backend-only implementation
   - Uses existing retrieval logic from spec 001-retrieval-validation
   - No frontend or FastAPI integration
 
-  Not building:
+Not building:
   - Data ingestion or embedding
   - UI or web integration
   - Authentication or deployment setup
   - Full conversation memory management
 RESPONSE_TEXT: |
-  Successfully created the specification for the OpenAI Agent RAG feature with:
+Successfully created the specification for the OpenAI Agent RAG feature with:
 
-  1. Comprehensive user stories covering the core functionality:
+1. Comprehensive user stories covering the core functionality:
      - P1: Basic query answering with retrieval
      - P2: Agent tool integration
      - P3: Context-grounded responses
 
-  2. 11 functional requirements defined (FR-001 to FR-010)
+2. 11 functional requirements defined (FR-001 to FR-010)
      - Covers agent creation, retrieval integration, query processing, response generation
      - Includes proper error handling and fallback mechanisms
 
-  3. 5 key entities identified:
+3. 5 key entities identified:
      - AI Agent, Retrieval Tool, Query, Retrieved Chunks, Grounded Response
 
-  4. 5 measurable success criteria (SC-001 to SC-005)
+4. 5 measurable success criteria (SC-001 to SC-005)
      - 100% compliance with OpenAI Agent SDK patterns
      - 95% of responses grounded in retrieved content
      - 5-second response time target
      - 95% success rate for retrieval integration
      - Backend-only implementation
 
-  5. Edge cases considered:
+5. Edge cases considered:
      - No relevant results from Qdrant
      - Unavailable OpenAI Agent SDK
 
-  The specification follows the agent.md patterns and properly integrates with existing retrieval infrastructure.
+The specification follows the agent.md patterns and properly integrates with existing retrieval infrastructure.
 ---
 
 # Feature Specification: openai-agent-rag

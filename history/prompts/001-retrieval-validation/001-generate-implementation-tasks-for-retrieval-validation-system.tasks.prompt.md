@@ -27,9 +27,9 @@ tests_yaml:
   - "tests/unit/test_retrieval.py"
   - "tests/integration/test_retrieval_validation.py"
 prompt_text: |
-  $ARGUMENTS
+$ARGUMENTS
 response_text: |
-  Successfully generated comprehensive implementation tasks for the retrieval pipeline validation system. Created tasks.md with 65 specific tasks organized across 8 phases:
+Successfully generated comprehensive implementation tasks for the retrieval pipeline validation system. Created tasks.md with 65 specific tasks organized across 8 phases:
   - Phase 1: Setup and Project Initialization (T001-T005)
   - Phase 2: Foundational Components (T006-T013)
   - Phase 3: User Story 1 - Validate Qdrant Retrieval Accuracy (T014-T024)
@@ -39,7 +39,7 @@ response_text: |
   - Phase 7: Validation Summary and Reporting (T052-T056)
   - Phase 8: Polish & Cross-Cutting Concerns (T057-T065)
 
-  Tasks follow the required checklist format with proper IDs, parallelization markers, and user story labels. Each task is specific enough to be executed independently, with clear file paths and dependencies properly documented. The tasks align with the user stories from the specification and support the success criteria defined in the feature spec.
+Tasks follow the required checklist format with proper IDs, parallelization markers, and user story labels. Each task is specific enough to be executed independently, with clear file paths and dependencies properly documented. The tasks align with the user stories from the specification and support the success criteria defined in the feature spec.
 outcome: "Tasks successfully generated with proper format and organization"
 evaluation: "All tasks follow checklist format, organized by user story, with proper dependencies and parallelization opportunities identified"
 ---

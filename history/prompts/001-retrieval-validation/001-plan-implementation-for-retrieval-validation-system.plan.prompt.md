@@ -29,9 +29,9 @@ tests_yaml:
   - "tests/unit/test_retrieval.py"
   - "tests/integration/test_validation.py"
 prompt_text: |
-  $ARGUMENTS
+$ARGUMENTS
 response_text: |
-  Completed implementation planning for the retrieval pipeline validation system. Created comprehensive plan including:
+Completed implementation planning for the retrieval pipeline validation system. Created comprehensive plan including:
   - Technical Context with Python 3.11, qdrant-client, and other dependencies
   - Constitution Check ensuring compliance with project principles
   - Project Structure with single-file architecture in retrieval.py
